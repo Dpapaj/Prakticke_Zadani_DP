@@ -1,0 +1,51 @@
+﻿<Window x:Class="App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Car Sales" Height="600" Width="800">
+    <Grid>
+        <Button x:Name="LoadXmlButton" Content="Load XML" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Width="100" Click="LoadXmlButton_Click"/>
+        <DataGrid x:Name="CarsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="200" Width="auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Název Model" Binding="{Binding Model}" Width="100"/>
+                <DataGridTextColumn Header="Datum prodeje" Binding="{Binding DateOfSale, StringFormat=\{0:dd.MM.yyyy\}}" Width="100"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="DPH" Binding="{Binding DPH}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="ResultsDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Height="auto" Width="auto">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="Název modelu"/>
+                                <TextBlock Text="Cena bez DPH" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Model}" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding PriceWithoutVAT}" Margin="5,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Cena s DPH">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="{Binding PriceWithVAT}" Margin="5,0" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
