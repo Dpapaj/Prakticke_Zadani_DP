@@ -29,7 +29,7 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding Model}" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding PriceWithoutVAT}" Margin="5,0"/>
+                                    <TextBlock Text="{Binding PriceWithoutDPH}" Margin="5,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -40,7 +40,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding PriceWithVAT}" Margin="5,0" VerticalAlignment="Bottom"/>
+                                <TextBlock Text="{Binding PriceWithDPH}" Margin="5,0" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
