@@ -46,8 +46,8 @@ namespace App
             var results = cars.GroupBy(c => c.Model).Select(g => new
             {
                 Model = g.Key,
-                PriceWithoutVAT = g.Where(c => c.DateOfSale.DayOfWeek == DayOfWeek.Saturday || c.DateOfSale.DayOfWeek == DayOfWeek.Sunday).Sum(c => c.Price),
-                PriceWithVAT = g.Where(c => c.DateOfSale.DayOfWeek == DayOfWeek.Saturday || c.DateOfSale.DayOfWeek == DayOfWeek.Sunday).Sum(c => c.Price + c.Price * c.DPH / 100)
+                PriceWithoutDPH = g.Where(c => c.DateOfSale.DayOfWeek == DayOfWeek.Saturday || c.DateOfSale.DayOfWeek == DayOfWeek.Sunday).Sum(c => c.Price),
+                PriceWithDPH = g.Where(c => c.DateOfSale.DayOfWeek == DayOfWeek.Saturday || c.DateOfSale.DayOfWeek == DayOfWeek.Sunday).Sum(c => c.Price + c.Price * c.DPH / 100)
             }).ToList();
 
             ResultsDataGrid.ItemsSource = results;
